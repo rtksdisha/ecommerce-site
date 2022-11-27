@@ -9,21 +9,23 @@ const ProductForm = () => {
     name: "",
     description: "",
     price: 0,
-    imageURL: "",
+    imageUrl: "",
   };
 
   const productFormSchema = yup.object().shape({
     name: yup.string().required("Please enter a name"),
     description: yup.string(),
     price: yup.number().required().typeError("Please enter a price"),
-    imageURL: yup.string(),
+    imageUrl: yup.string(),
   });
 
-  const { control } = useForm({
+  const { control, watch } = useForm({
     defaultValues,
     resolver: yupResolver(productFormSchema),
     mode: "all",
   });
+
+  const imageUrlValue = watch("imageUrl");
 
   return (
     <Box id="product" component="form" sx={{ padding: "24px" }}>
@@ -79,7 +81,7 @@ const ProductForm = () => {
         <Grid item xs={8}>
           <Controller
             control={control}
-            name='imageURL'
+            name="imageUrl"
             render={({ field, fieldState }) => (
               <TextField
                 {...field}
@@ -92,6 +94,15 @@ const ProductForm = () => {
             )}
           />
         </Grid>
+        {!!imageUrlValue && (
+          <Grid item xs={12}>
+            <Box
+              sx={{ width: "100%" }}
+              component="img"
+              src={imageUrlValue}
+            ></Box>
+          </Grid>
+        )}
       </Grid>
     </Box>
   );
