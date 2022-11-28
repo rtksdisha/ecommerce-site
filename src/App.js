@@ -1,25 +1,29 @@
 import { Fragment, useState } from "react";
 import Navbar from "./components/navbar";
 import AdminPage from "./pages/AdminPage";
+import Shop from "./pages/Shop";
+import { Route, Routes } from "react-router-dom";
 
 function App() {
   //This is a hook
-  const [isAdminVisible, setIsAdminVisible] = useState(false);
-  const [allProducts, setAllProducts] = useState([])
-  
+  const [allProducts, setAllProducts] = useState([]);
+
   return (
     <Fragment>
       {/* renders navbar.jsx from components */}
-      <Navbar setAdminVisible={setIsAdminVisible} />
-
-      {isAdminVisible && (
-        // {/* renders AdminPage.jsx from components */}
-        <AdminPage 
-        allProducts = {allProducts}
-        setAllProducts = {setAllProducts}
+      <Navbar />
+      <Routes>
+        <Route
+          path="/admin"
+          element={
+            <AdminPage
+              allProducts={allProducts}
+              setAllProducts={setAllProducts}
+            />
+          }
         />
-      )}
-
+        <Route path="/" element={<Shop />} />
+      </Routes>
     </Fragment>
   );
 }
