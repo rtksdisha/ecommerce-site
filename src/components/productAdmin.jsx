@@ -1,7 +1,7 @@
 import { Button, Typography } from "@mui/material";
 import { Box, Stack } from "@mui/system";
 
-const ProductAdmin = ({ product, handleOnEdit }) => {
+const ProductAdmin = ({ product, handleOnEdit, handleOnDelete }) => {
   return (
     <>
       <Box sx={{ backgroundColor: "pink", height: 480, boxShadow: 3 }}>
@@ -42,6 +42,7 @@ const ProductAdmin = ({ product, handleOnEdit }) => {
           Edit
         </Button>
         <Button
+          onClick={() => handleOnDelete(product._id)}
           sx={{
             background: "black",
             height: 64,

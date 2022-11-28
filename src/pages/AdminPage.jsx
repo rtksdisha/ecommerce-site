@@ -31,6 +31,9 @@ const AdminPage = ({ allProducts, setAllProducts }) => {
     setEditProduct(product);
   };
 
+  const handleOnDelete = (id) =>
+    setAllProducts((prev) => prev.filter((p) => p._id !== id));
+
   //   useEffect(() => {
   //     console.log(allProducts);
   //   }, [allProducts]);
@@ -50,7 +53,11 @@ const AdminPage = ({ allProducts, setAllProducts }) => {
         Add a new product
       </Fab>
       {/* <Typography>{allProducts[1]?.name}</Typography> */}
-      <ProductListAdmin products={allProducts} handleOnEdit={handleOnEdit} />
+      <ProductListAdmin
+        products={allProducts}
+        handleOnEdit={handleOnEdit}
+        handleOnDelete={handleOnDelete}
+      />
       <AddProductModal
         open={isAddProductModalVisible}
         onClose={() => setIsAddProductVisible(false)}

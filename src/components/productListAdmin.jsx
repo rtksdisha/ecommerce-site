@@ -2,7 +2,7 @@ import React from "react";
 import { Grid } from "@mui/material";
 import ProductAdmin from "./productAdmin";
 
-const ProductList = ({ products, handleOnEdit}) => {
+const ProductList = ({ products, handleOnEdit, handleOnDelete }) => {
   if (products.length === 0) {
     return null;
   }
@@ -12,7 +12,11 @@ const ProductList = ({ products, handleOnEdit}) => {
       {products.map((product) => {
         return (
           <Grid item xs={12} sm={6} md={4} key={product._id}>
-            <ProductAdmin product={product}  handleOnEdit={handleOnEdit} />
+            <ProductAdmin
+              product={product}
+              handleOnEdit={handleOnEdit}
+              handleOnDelete={handleOnDelete}
+            />
           </Grid>
         );
       })}
