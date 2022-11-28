@@ -5,7 +5,8 @@ import AdminPage from "./pages/AdminPage";
 function App() {
   //This is a hook
   const [isAdminVisible, setIsAdminVisible] = useState(false);
-
+  const [allProducts, setAllProducts] = useState([])
+  
   return (
     <Fragment>
       {/* renders navbar.jsx from components */}
@@ -13,7 +14,10 @@ function App() {
 
       {isAdminVisible && (
         // {/* renders AdminPage.jsx from components */}
-        <AdminPage />
+        <AdminPage 
+        allProducts = {allProducts}
+        setAllProducts = {setAllProducts}
+        />
       )}
 
     </Fragment>

@@ -1,10 +1,24 @@
-import { Box, Fab } from "@mui/material";
-import { AddCircleOutline } from "@mui/icons-material";
 import { useState } from "react";
-import AddProductModal from "../modals";
+import { Box, Fab } from "@mui/material";
+import AddCircleOutline from "@mui/icons-material/AddCircleOutline";
+import AddProductModal from "../modals/AddProductModal";
+// import { useEffect } from "react";
 
-const AdminPage = () => {
-  const [isAddProductVisible, setIsAddProductVisible] = useState(false);
+const AdminPage = ({ allProducts, setAllProducts }) => {
+  const [isAddProductModalVisible, setIsAddProductVisible] = useState(false);
+
+  const handleOnSubmit = (product) => {
+    const tempProducts = Array.from(allProducts);
+    tempProducts.push({
+      ...product,
+      _id: tempProducts.length + 1, // Add an id when storing
+    });
+    setAllProducts(tempProducts);
+  };
+
+  //   useEffect(() => {
+  //     console.log(allProducts);
+  //   }, [allProducts]);
 
   return (
     <Box>
@@ -18,11 +32,13 @@ const AdminPage = () => {
         }}
       >
         <AddCircleOutline sx={{ mr: 1 }} />
-        Add New Product
+        Add a new product
       </Fab>
+      {/* <Typography>{allProducts[1]?.name}</Typography> */}
       <AddProductModal
-        open={isAddProductVisible}
-        close={() => setIsAddProductVisible(false)}
+        open={isAddProductModalVisible}
+        onClose={() => setIsAddProductVisible(false)}
+        onSubmit={handleOnSubmit}
       />
     </Box>
   );
