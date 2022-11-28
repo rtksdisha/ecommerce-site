@@ -1,7 +1,9 @@
 import { useState } from "react";
-import { Box, Fab } from "@mui/material";
+import { Fab } from "@mui/material";
 import AddCircleOutline from "@mui/icons-material/AddCircleOutline";
 import AddProductModal from "../modals/AddProductModal";
+import ProductListAdmin from "../components/productListAdmin";
+import { Container } from "@mui/system";
 // import { useEffect } from "react";
 
 const AdminPage = ({ allProducts, setAllProducts }) => {
@@ -21,7 +23,7 @@ const AdminPage = ({ allProducts, setAllProducts }) => {
   //   }, [allProducts]);
 
   return (
-    <Box>
+    <Container maxWidth="lg" sx={{ margin: 2 }}>
       <Fab
         variant="extended"
         onClick={() => setIsAddProductVisible(true)}
@@ -35,12 +37,13 @@ const AdminPage = ({ allProducts, setAllProducts }) => {
         Add a new product
       </Fab>
       {/* <Typography>{allProducts[1]?.name}</Typography> */}
+      <ProductListAdmin />
       <AddProductModal
         open={isAddProductModalVisible}
         onClose={() => setIsAddProductVisible(false)}
         onSubmit={handleOnSubmit}
       />
-    </Box>
+    </Container>
   );
 };
 
