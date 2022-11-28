@@ -37,7 +37,7 @@ const AdminPage = ({ allProducts, setAllProducts }) => {
         Add a new product
       </Fab>
       {/* <Typography>{allProducts[1]?.name}</Typography> */}
-      <ProductListAdmin />
+      <ProductListAdmin products={allProducts} />
       <AddProductModal
         open={isAddProductModalVisible}
         onClose={() => setIsAddProductVisible(false)}
