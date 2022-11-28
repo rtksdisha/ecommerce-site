@@ -3,7 +3,7 @@ import * as yup from "yup";
 import { useForm, Controller } from "react-hook-form";
 import { Box, Grid, TextField } from "@mui/material";
 
-const ProductForm = ({onSubmit}) => {
+const ProductForm = ({ onSubmit, defaultEditValues }) => {
   //default for productFormSchema
   const defaultValues = {
     name: "",
@@ -20,7 +20,7 @@ const ProductForm = ({onSubmit}) => {
   });
 
   const { control, watch, handleSubmit, reset } = useForm({
-    defaultValues,
+    defaultValues: defaultEditValues || defaultValues,
     resolver: yupResolver(productFormSchema),
     mode: "all",
   });

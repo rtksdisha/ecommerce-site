@@ -4,18 +4,31 @@ import AddCircleOutline from "@mui/icons-material/AddCircleOutline";
 import AddProductModal from "../modals/AddProductModal";
 import ProductListAdmin from "../components/productListAdmin";
 import { Container } from "@mui/system";
+import EditProductModal from "../modals/EditProductModal";
 // import { useEffect } from "react";
 
 const AdminPage = ({ allProducts, setAllProducts }) => {
   const [isAddProductModalVisible, setIsAddProductVisible] = useState(false);
+  const [isEditProductModalVisible, setIsEditProductModalVisible] =
+    useState(false);
+  const [editProduct, setEditProduct] = useState();
 
   const handleOnSubmit = (product) => {
     const tempProducts = Array.from(allProducts);
-    tempProducts.push({
-      ...product,
-      _id: tempProducts.length + 1, // Add an id when storing
-    });
+    if (product._id) {
+      const productIndex = tempProducts.findIndex((p) => p._id === product._id);
+      tempProducts[productIndex] = product;
+    } else
+      tempProducts.push({
+        ...product,
+        _id: tempProducts.length + 1, // Add an id when storing
+      });
     setAllProducts(tempProducts);
+  };
+
+  const handleOnEdit = (product) => {
+    setIsEditProductModalVisible(true);
+    setEditProduct(product);
   };
 
   //   useEffect(() => {
@@ -37,12 +50,18 @@ const AdminPage = ({ allProducts, setAllProducts }) => {
         Add a new product
       </Fab>
       {/* <Typography>{allProducts[1]?.name}</Typography> */}
-      <ProductListAdmin products={allProducts} />
+      <ProductListAdmin products={allProducts} handleOnEdit={handleOnEdit} />
       <AddProductModal
         open={isAddProductModalVisible}
         onClose={() => setIsAddProductVisible(false)}
         onSubmit={handleOnSubmit}
       />
+      <EditProductModal
+        open={isEditProductModalVisible}
+        onClose={() => setIsEditProductModalVisible(false)}
+        onSubmit={handleOnSubmit}
+        product={editProduct}
+      ></EditProductModal>
     </Container>
   );
 };

@@ -1,10 +1,10 @@
 import { Button, Typography } from "@mui/material";
 import { Box, Stack } from "@mui/system";
 
-const ProductAdmin = ({ product }) => {
+const ProductAdmin = ({ product, handleOnEdit }) => {
   return (
     <>
-      <Box sx={{ backgroundColor: "grey", height: 480, boxShadow: 3 }}>
+      <Box sx={{ backgroundColor: "pink", height: 480, boxShadow: 3 }}>
         <Box
           component="img"
           sx={{ height: 0.4, width: 1, objectFile: "cover" }}
@@ -28,6 +28,7 @@ const ProductAdmin = ({ product }) => {
       </Box>
       <Stack direction="row">
         <Button
+          onClick={() => (!!handleOnEdit ? handleOnEdit(product) : null)}
           sx={{
             background: "purple",
             height: 64,
@@ -42,7 +43,7 @@ const ProductAdmin = ({ product }) => {
         </Button>
         <Button
           sx={{
-            background: "pink",
+            background: "black",
             height: 64,
             width: 1,
             margin: 0,
