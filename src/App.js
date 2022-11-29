@@ -22,7 +22,7 @@ function App() {
             />
           }
         />
-        <Route path="/" element={<Shop />} />
+        <Route path="/" element={<Shop products={allProducts} />} />
       </Routes>
     </Fragment>
   );
