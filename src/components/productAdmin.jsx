@@ -11,7 +11,7 @@ const ProductAdmin = ({ product, handleOnEdit, handleOnDelete }) => {
         <Button
           onClick={() => handleOnEdit(product)}
           sx={{
-            background: "yellow",
+            background: "pink",
             height: 64,
             width: 1,
             margin: 0,
@@ -25,7 +25,7 @@ const ProductAdmin = ({ product, handleOnEdit, handleOnDelete }) => {
         <Button
           onClick={() => handleOnDelete(product._id)}
           sx={{
-            background: "red",
+            background: "purple",
             height: 64,
             width: 1,
             margin: 0,

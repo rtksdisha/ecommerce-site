@@ -11,7 +11,7 @@ const ProductShop = ({ product, onAdd }) => {
       <Button
         onClick={() => onAdd(product._id)}
         sx={{
-          background: "yellow",
+          background: "pink",
           height: 64,
           width: 1,
           margin: 0,
