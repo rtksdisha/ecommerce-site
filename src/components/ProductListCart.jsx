@@ -1,8 +1,8 @@
 import React from "react";
 import Grid from "@mui/material/Grid";
-import ProductAdmin from "./ProductAdmin";
+import ProductCart from "./ProductCart";
 
-const ProductListAdmin = ({ products, handleOnEdit, handleOnDelete }) => {
+const ProductListCart = ({ products, handleLess, handleMore }) => {
   if (products.length === 0) {
     return null;
   }
@@ -12,10 +12,10 @@ const ProductListAdmin = ({ products, handleOnEdit, handleOnDelete }) => {
       {products.map((product) => {
         return (
           <Grid item xs={12} sm={6} md={4} key={product._id}>
-            <ProductAdmin
+            <ProductCart
               product={product}
-              handleOnEdit={handleOnEdit}
-              handleOnDelete={handleOnDelete}
+              handleLess={handleLess}
+              handleMore={handleMore}
             />
           </Grid>
         );
@@ -24,4 +24,4 @@ const ProductListAdmin = ({ products, handleOnEdit, handleOnDelete }) => {
   );
 };
 
-export default ProductListAdmin;
+export default ProductListCart;

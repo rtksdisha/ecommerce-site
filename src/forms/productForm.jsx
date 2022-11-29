@@ -4,7 +4,6 @@ import { useForm, Controller } from "react-hook-form";
 import { Box, Grid, TextField } from "@mui/material";
 
 const ProductForm = ({ onSubmit, defaultEditValues }) => {
-  //default for productFormSchema
   const defaultValues = {
     name: "",
     description: "",
@@ -13,9 +12,12 @@ const ProductForm = ({ onSubmit, defaultEditValues }) => {
   };
 
   const productFormSchema = yup.object().shape({
-    name: yup.string().required("Please enter a name"),
+    name: yup.string().required("You need to add a name"),
     description: yup.string(),
-    price: yup.number().required().typeError("Please enter a price"),
+    price: yup
+      .number()
+      .required()
+      .typeError("You need to enter a price, must be number."),
     imageUrl: yup.string(),
   });
 
@@ -52,7 +54,7 @@ const ProductForm = ({ onSubmit, defaultEditValues }) => {
             )}
           />
         </Grid>
-        <Grid item xs={8}>
+        <Grid item xs={12}>
           <Controller
             control={control}
             name="description"
@@ -68,7 +70,7 @@ const ProductForm = ({ onSubmit, defaultEditValues }) => {
             )}
           />
         </Grid>
-        <Grid item xs={8}>
+        <Grid item xs={6}>
           <Controller
             control={control}
             name="price"
@@ -84,15 +86,15 @@ const ProductForm = ({ onSubmit, defaultEditValues }) => {
             )}
           />
         </Grid>
-        <Grid item xs={8}>
+        <Grid item xs={12}>
           <Controller
             control={control}
             name="imageUrl"
             render={({ field, fieldState }) => (
               <TextField
                 {...field}
-                label="Image URL"
-                variant="standard"
+                label="Image url"
+                variant="outlined"
                 fullWidth
                 error={!!fieldState.error}
                 helperText={fieldState.error?.message}
@@ -102,11 +104,7 @@ const ProductForm = ({ onSubmit, defaultEditValues }) => {
         </Grid>
         {!!imageUrlValue && (
           <Grid item xs={12}>
-            <Box
-              sx={{ width: "100%" }}
-              component="img"
-              src={imageUrlValue}
-            ></Box>
+            <Box sx={{ width: "100%" }} component="img" src={imageUrlValue} />
           </Grid>
         )}
       </Grid>

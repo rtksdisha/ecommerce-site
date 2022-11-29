@@ -1,38 +1,40 @@
-import {
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-} from "@mui/material";
-import ProductForm from "../forms/productForm";
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from "@mui/material"
+import ProductForm from "../forms/ProductForm"
 
 const EditProductModal = ({ open, onClose, onSubmit, product }) => {
+
   return (
-    //The pop up dialog that that shows to add a new product
-    <Dialog open={open} onClose={onClose}>
-      <DialogTitle> Editing the Product</DialogTitle>
+    <Dialog
+      open={open}
+      onClose={onClose}
+    >
+      <DialogTitle>
+        Editing this product...
+      </DialogTitle>
       <DialogContent>
-        <ProductForm defaultEditValues={product} onSubmit={onSubmit} />
+        <ProductForm
+          defaultEditValues={product}
+          onSubmit={onSubmit}
+        />
       </DialogContent>
       <DialogActions>
         <Button
-          variant="contained"
-          color="primary"
-          form="product-form"
-          type="submit"
-          children="Update product"
+          variant='contained'
+          color='error'
+          form='product-form'
+          children='Cancel'
           onClick={onClose}
         />
         <Button
-          variant="outlined"
-          form="product-form"
-          children="Cancel"
+          variant='outlined'
+          form='product-form'
+          type='submit'
+          children='Update product'
           onClick={onClose}
         />
       </DialogActions>
     </Dialog>
-  );
-};
+  )
+}
 
 export default EditProductModal

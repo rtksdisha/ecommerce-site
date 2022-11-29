@@ -4,40 +4,44 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
 import Button from "@mui/material/Button";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import { Link } from "react-router-dom";
+import { Badge } from "@mui/material";
+import { Link, useNavigate } from "react-router-dom";
 
-const Navbar = () => {
+import MenuIcon from "@mui/icons-material/Menu";
+import ShoppingCardIcon from "@mui/icons-material/ShoppingCart";
+
+const Navbar = ({ cartProductsQty }) => {
+  const navigate = useNavigate()
+
   return (
     <AppBar position="static">
-      <Container maxWidth="x1">
+      <Container maxWidth="xl">
         <Toolbar>
-          {/* standardize text */}
           <Typography
-            varient="h6"
+            variant="h6"
             noWrap
             component="a"
             href="/"
             sx={{
-              fontFamily: "arial",
+              mr: 2,
+              fontFamily: "monospace",
               fontWeight: 700,
-              letterSpacing: "0.3rem",
+              letterSpacing: ".3rem",
               textDecoration: "none",
-              display: { xs: "none", md: "flex" },
               color: "inherit",
+              display: { xs: "none", md: "flex" },
             }}
           >
             LOGO
           </Typography>
-          <Box sx={{ display: { xs: "flex", md: "none" } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
               aria-label="account of current user"
               color="inherit"
             >
-              <MenuIcon></MenuIcon>
+              <MenuIcon />
             </IconButton>
           </Box>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
@@ -52,10 +56,15 @@ const Navbar = () => {
               </Button>
             </Link>
           </Box>
-          <Box sx={{ flexgrow: 0 }}>
-            <IconButton sx={{ p: 0 }}>
-              <ShoppingCartIcon sx={{ color: "white" }}></ShoppingCartIcon>
-            </IconButton>
+          <Box sx={{ flexGrow: 0 }}>
+            <Badge badgeContent={cartProductsQty}>
+              <IconButton
+                sx={{ p: 0 }}
+                onClick={() => navigate('/cart')}
+              >
+              <ShoppingCardIcon sx={{ color: "white" }} />
+              </IconButton>
+            </Badge>
           </Box>
         </Toolbar>
       </Container>
